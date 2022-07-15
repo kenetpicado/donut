@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConsultaRequest extends FormRequest
+class RangoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,8 @@ class ConsultaRequest extends FormRequest
         return [
             'carnet' => 'required|min:9|max:10|alpha_dash',
             'pin' => 'required|min:6|max:6|alpha_num',
-            'anyo' => 'required|date_format:Y'
+            'desde' => 'required|date_format:Y|before:hasta',
+            'hasta' => 'required|date_format:Y',
         ];
     }
 }

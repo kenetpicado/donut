@@ -15,7 +15,9 @@ use App\Http\Controllers\ConsultaController;
 |
 */
 
-//Route::get('consulta', [ConsultaController::class, 'notas'])->name('consulta.notas');
 Route::post('consulta', [ConsultaController::class, 'obtener'])->name('consulta.obtener');
+Route::post('rango', [ConsultaController::class, 'rango'])->name('consulta.rango');
 
+Route::view('terminos-y-condiciones', 'terminos')->name('terminos');
 Route::view('/', 'index')->name('index');
+Route::view('rango', 'rango')->name('rango');

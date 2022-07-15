@@ -13,28 +13,7 @@
 
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white static-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bolder" href="/">{{ config('app.name') }}</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Acerca de</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   <x-navbar></x-navbar>
 
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -43,7 +22,8 @@
                     <div class="card-body p-0">
                         <div class="p-5">
                             <h1 class="h2 text-center fw-bolder">{{ config('app.name') }}</h1>
-                            <h1 class="h5 text-center mb-4">Consulta de notas</h1>
+                            <h1 class="h6 text-center">Consulta de notas</h1>
+                            <h1 class="h6 text-center mb-4">(Sitio no oficial)</h1>
 
                             @if (session('error'))
                                 <div class="alert alert-danger" role="alert">
@@ -75,10 +55,10 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-3">
                                     <label class="form-label">Año</label>
                                     <select class="form-select" name="anyo">
-                                        <option value='2022'>2022</option>
+                                        <option value='2022' selected>2022</option>
                                         <option value='2021'>2021</option>
                                         <option value='2020'>2020</option>
                                         <option value='2019'>2019</option>
@@ -89,9 +69,12 @@
                                         <option value='2014'>2014</option>
                                     </select>
                                 </div>
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary text-center">Ver notas</button>
+                                <div class="mb-3">
+                                    <small class="">Al usar este servicio usted acepta los
+                                        <a href="{{route('terminos')}}">Términos</a>
+                                    </small>
                                 </div>
+                                <button type="submit" class="btn btn-primary">Ver notas</button>
                             </form>
                         </div>
                     </div>
@@ -99,7 +82,6 @@
             </div>
         </div>
     </div>
-    <x-footer></x-footer>
 
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </body>

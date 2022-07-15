@@ -49,6 +49,7 @@
 </head>
 
 <body class="bg-light">
+    <x-navbar></x-navbar>
     <div class="container-fluid">
         <div class="justify-content-center">
             <div class="card o-hidden border-1 my-4" style="border-radius: 20px">
@@ -60,7 +61,7 @@
             </div>
         </div>
     </div>
-    <x-footer></x-footer>
+
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </body>
 

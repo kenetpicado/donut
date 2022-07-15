@@ -11,7 +11,7 @@
 
     <div class="alert alert-light" role="alert">
         {{ $alumno->nombre }} | {{ $alumno->carnet }} | {{ $alumno->grado }}
-      </div>
+    </div>
 
     <div class="table-responsive" id="no-more-tables">
         <table class="table table-borderless" width="100%" cellspacing="0">
