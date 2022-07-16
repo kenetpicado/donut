@@ -40,15 +40,15 @@ class ConsultaController extends Controller
         for ($i = 0; $i < sizeof($anyos); $i++) {
 
             $request->merge(['anyo' => $anyos[$i]]);
-
             $dom = (new Servicios)->getHTML($request);
 
-            // if ($dom == null) {
-            //     array_pop($anyos[$i]);
-            //     continue;
-            // }
-            if ($dom == null)
-                return redirect()->route('index')->with('error', 'Oops');
+            if ($i == 0 && $dom == null)
+                return redirect()->route('rango')->with('error', 'Oops');
+
+            if ($dom == null) {
+                array_pop($anyos[$i]);
+                continue;
+            }
 
             if ($i == sizeof($anyos) - 1)
                 $alumno = (new Alumno($dom));

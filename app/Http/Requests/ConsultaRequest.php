@@ -25,7 +25,7 @@ class ConsultaRequest extends FormRequest
     {
         return [
             'carnet' => 'required|min:9|max:10|alpha_dash',
-            'pin' => 'required|min:6|max:6|alpha_num',
+            'pin' => 'required|min:5|max:6|alpha_num',
             'anyo' => 'required|date_format:Y'
         ];
     }
