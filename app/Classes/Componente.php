@@ -21,18 +21,19 @@ class Componente
         $this->p3 = $this->getNota($cols, 3);
         $this->final = $this->getNota($cols, 4);
         $this->convocatoria = $this->getNota($cols, 5);
-        $this->curso = $this->getNota($cols, 6);
-        $this->tutoria =  $this->getNota($cols, 7);
+
+        if (is_numeric($this->getNota($cols, 6))) {
+            $this->final = $this->getNota($cols, 6);
+        }
+
+        if (is_numeric($this->getNota($cols, 7))) {
+            $this->final = $this->getNota($cols, 7);
+        }
     }
 
     public function getNota($cols, $indice)
     {
         $nota = str_replace('&nbsp', '', ($cols[$indice]->textContent ?? ''));
-        $nota = preg_replace('/\xc2\xa0/', '', $nota);
-
-        if ($nota == '')
-            return '-';
-
-        return $nota;
+        return preg_replace('/\xc2\xa0/', '', $nota) ?: '-';
     }
 }

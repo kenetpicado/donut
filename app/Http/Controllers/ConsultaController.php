@@ -8,33 +8,63 @@ use App\Http\Requests\RangoRequest;
 use App\Services\Servicios;
 
 class ConsultaController extends Controller
-{
+{    
     /**
-     * Display a listing of the resource.
+     * Consulta normal
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
-    public function obtener(ConsultaRequest $request)
+    public function inicio()
+    {
+        $anyos = (new Servicios)->anyos();
+        return view('inicio', compact('anyos'));
+    }
+    
+    /**
+     * Consulta por rango de fechas
+     *
+     * @return view
+     */
+    public function inicio_rango()
+    {
+        $anyos = (new Servicios)->anyos();
+        return view('rango', compact('anyos'));
+    }
+    
+    /**
+     * Obtener notas
+     *
+     * @param  mixed $request
+     * @return view
+     */
+    public function get_notas(ConsultaRequest $request)
     {
         $dom = (new Servicios)->getHTML($request);
 
-        if ($dom == null)
-            return redirect()->route('index')->with('error', 'Oops');
+        if (!$dom)
+            return redirect('/')->with('error', 'Oops');
 
         $alumno = (new Alumno($dom));
         $componentes = (new Servicios)->getComponentes($dom);
         return view('consulta.notas', compact('alumno', 'componentes'));
     }
-
-    public function rango(RangoRequest $request)
+    
+    /**
+     * Obtener notas en un rango de fechas
+     *
+     * @param  mixed $request
+     * @return view
+     */
+    public function get_notas_rango(RangoRequest $request)
     {
-        $indice = (int) $request->desde;
+        $desde = (int) $request->desde;
         $anyos = [];
         $componentesanyo = [];
 
-        while ($indice <= $request->hasta) {
-            array_push($anyos, $indice);
-            $indice++;
+        /* Guardar los anyos a examinar */
+        while ($desde <= $request->hasta) {
+            array_push($anyos, $desde);
+            $desde++;
         }
 
         for ($i = 0; $i < sizeof($anyos); $i++) {
@@ -42,19 +72,21 @@ class ConsultaController extends Controller
             $request->merge(['anyo' => $anyos[$i]]);
             $dom = (new Servicios)->getHTML($request);
 
-            if ($i == 0 && $dom == null)
-                return redirect()->route('rango')->with('error', 'Oops');
+            /* Error de credenciales, termina */
+            if ($i == 0 && !$dom)
+                return redirect('/rango')->with('error', 'Oops');
 
-            if ($dom == null) {
+            /* Error en un anyo, continua */
+            if (!$dom) {
                 array_pop($anyos[$i]);
                 continue;
             }
 
+            /* Ultima vuelta, guarda datos del alumno */
             if ($i == sizeof($anyos) - 1)
                 $alumno = (new Alumno($dom));
 
-            $unanyo = (new Servicios)->getComponentes($dom);
-            array_push($componentesanyo, $unanyo);
+            array_push($componentesanyo, (new Servicios)->getComponentes($dom));
         }
 
         return view('consulta.rango', compact('alumno', 'componentesanyo', 'anyos'));

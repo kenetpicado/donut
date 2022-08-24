@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Inicio Rango')
+@section('title', 'Inicio')
 
 @section('content')
     <div class="row justify-content-center">
@@ -16,12 +16,12 @@
                         </div>
                     @endif
 
-                    <form action="notas-rango" method="post">
+                    <form action="/notas" method="post">
                         @csrf
                         <x-input name="carnet"></x-input>
                         <x-input name="pin" type="password"></x-input>
-                        <x-select-0 name="desde" :items="$anyos"></x-select-0>
-                        <x-select-0 name="hasta" :items="$anyos"></x-select-0>
+                        <x-select-0 name="anyo" label="Año lectivo" :items="$anyos"></x-select-0>
+                        
                         <div class="mb-3">
                             <small class="text-muted form-label">Al usar este servicio usted acepta los
                                 <a href="/terminos">Términos</a>

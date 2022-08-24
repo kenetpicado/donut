@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConsultaController;
 
@@ -15,9 +14,9 @@ use App\Http\Controllers\ConsultaController;
 |
 */
 
-Route::post('consulta', [ConsultaController::class, 'obtener'])->name('consulta.obtener');
-Route::post('rango', [ConsultaController::class, 'rango'])->name('consulta.rango');
+Route::get('/', [ConsultaController::class, 'inicio']);
+Route::get('/rango', [ConsultaController::class, 'inicio_rango']);
+Route::view('/terminos', 'terminos');
 
-Route::view('terminos-y-condiciones', 'terminos')->name('terminos');
-Route::view('/', 'index')->name('index');
-Route::view('rango', 'rango')->name('rango');
+Route::post('notas', [ConsultaController::class, 'get_notas']);
+Route::post('notas-rango', [ConsultaController::class, 'get_notas_rango']);
