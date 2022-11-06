@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('title', 'Inicio')
+@section('title', 'Home')
 
 @section('content')
     <div class="row justify-content-center">
@@ -16,15 +16,22 @@
                         </div>
                     @endif
 
-                    <form action="/notas" method="post">
+                    <form action="{{ route('grades') }}" method="post">
                         @csrf
-                        <x-input name="carnet"></x-input>
-                        <x-input name="pin" type="password"></x-input>
-                        <x-select-0 name="anyo" label="Año lectivo" :items="$anyos"></x-select-0>
-                        
+                        <x-input name="id" label="Carnet"></x-input>
+                        <x-input name="password" label="PIN" type="password"></x-input>
+
+                        <x-select-0 name="year" label="Año lectivo">
+                            @foreach ($years as $year)
+                                <option value="{{ $year }}" {{ old('year') == $year ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
+                            @endforeach
+                        </x-select-0>
+
                         <div class="mb-3">
                             <small class="text-muted form-label">Al usar este servicio usted acepta los
-                                <a href="/terminos">Términos</a>
+                                <a href="{{ route('terms') }}">Términos</a>
                             </small>
                         </div>
                         <div class="d-grid">

@@ -1,13 +1,9 @@
-@props(['name', 'label' => $name, 'items'])
+@props(['name', 'label' => $name])
 
 <div class="mb-3">
     <label class="form-label">{{ ucfirst($label) }}</label>
     <select name="{{ $name }}" class="form-control @error($name) is-invalid @enderror" autofocus>
-        @foreach ($items as $item)
-            <option value="{{ $item->id }}" {{ old($name) == $item->id ? 'selected' : '' }}>
-                {{ $item->nombre }}
-            </option>
-        @endforeach
+        {{ $slot }}
     </select>
 
     @error($name)

@@ -44,7 +44,7 @@
 </head>
 
 <body class="bg-light">
-    <x-navbar></x-navbar>
+    @include('components.navbar')
     <div class="container-fluid mb-5">
         @yield('content')
     </div>

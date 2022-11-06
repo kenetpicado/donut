@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('title', 'Inicio Rango')
+@section('title', 'Range')
 
 @section('content')
     <div class="row justify-content-center">
@@ -16,15 +16,30 @@
                         </div>
                     @endif
 
-                    <form action="notas-rango" method="post">
+                    <form action="{{ route('grades.range') }}" method="post">
                         @csrf
-                        <x-input name="carnet"></x-input>
-                        <x-input name="pin" type="password"></x-input>
-                        <x-select-0 name="desde" :items="$anyos"></x-select-0>
-                        <x-select-0 name="hasta" :items="$anyos"></x-select-0>
+                        <x-input name="id" label="Carnet"></x-input>
+                        <x-input name="password" label="PIN" type="password"></x-input>
+
+                        <x-select-0 name="from" label="Desde">
+                            @foreach ($years as $year)
+                                <option value="{{ $year }}" {{ old('from') == $year ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
+                            @endforeach
+                        </x-select-0>
+
+                        <x-select-0 name="to" label="Hasta">
+                            @foreach ($years as $year)
+                                <option value="{{ $year }}" {{ old('to') == $year ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
+                            @endforeach
+                        </x-select-0>
+
                         <div class="mb-3">
                             <small class="text-muted form-label">Al usar este servicio usted acepta los
-                                <a href="/terminos">Términos</a>
+                                <a href="{{ route('terms') }}">Términos</a>
                             </small>
                         </div>
                         <div class="d-grid">

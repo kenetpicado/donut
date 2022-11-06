@@ -1,22 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\ResultController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/* Redirect To */
+Route::get('/', function () {
+    return redirect()->route('home');
+});
 
-Route::get('/', [ConsultaController::class, 'inicio']);
-Route::get('/rango', [ConsultaController::class, 'inicio_rango']);
-Route::view('/terminos', 'terminos');
+/* To Show Main Views */
+Route::controller(MainController::class)->group(function () {
+    Route::get('home', 'index')->name('home');
+    Route::get('range', 'range')->name('range');
+});
 
-Route::post('notas', [ConsultaController::class, 'get_notas']);
-Route::post('notas-rango', [ConsultaController::class, 'get_notas_rango']);
+/* To Proccess Results */
+Route::controller(ResultController::class)->group(function () {
+    Route::post('result-grades', 'grades')->name('grades');
+    Route::post('result-grades-range', 'grades_range')->name('grades.range');
+});
+
+Route::view('/terms', 'main.terms')->name('terms');

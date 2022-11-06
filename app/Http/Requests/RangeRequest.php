@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RangoRequest extends FormRequest
+class RangeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class RangoRequest extends FormRequest
     public function rules()
     {
         return [
-            'carnet' => 'required|min:9|max:10|alpha_dash',
-            'pin' => 'required|min:6|max:6|alpha_num',
-            'desde' => 'required|date_format:Y|before:hasta',
-            'hasta' => 'required|date_format:Y',
+            'id' => 'required|min:9|max:10|alpha_dash',
+            'password' => 'required|min:6|max:6|alpha_num',
+            'from' => 'required|date_format:Y|before:to',
+            'to' => 'required|date_format:Y',
         ];
     }
 }

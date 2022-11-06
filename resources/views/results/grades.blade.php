@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', 'Notas')
 
@@ -8,29 +8,28 @@
             <div class="text-center">
                 <h6>UNIVERSIDAD NACIONAL AUTONOMA DE NICARAGUA - LEON</h6>
                 <h6>INFORME DE CALIFICACIONES</h6>
-                <h6>{{ $alumno->anyo }}</h6>
-                <h6>{{ $alumno->grado }}</h6>
+                <h6>{{ $student->year }}</h6>
+                <h6>{{ $student->cycle_year }}</h6>
             </div>
             <div class="card-text text-uppercase small my-3">
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
-                            <td>{{ $alumno->facultad }}</td>
-                            <td>{{ $alumno->carrera }}</td>
+                            <td>{{ $student->faculty }}</td>
+                            <td>{{ $student->career }}</td>
                         </tr>
                         <tr>
-                            <td>{{ $alumno->nombre }}</td>
-                            <td>{{ $alumno->carnet }}</td>
+                            <td>{{ $student->name }}</td>
+                            <td>{{ $student->id }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
             <div id="no-more-tables">
                 <table class="table table-borderless" width="100%" cellspacing="0">
                     <thead>
                         <tr class="text-secondary text-uppercase small">
-                            <th>Componente</th>
+                            <th>Component</th>
                             <th>Parcial I</th>
                             <th>Parcial II</th>
                             <th>Parcial III</th>
@@ -39,27 +38,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($componentes as $componente)
+                        @foreach ($components as $component)
                             <tr>
                                 {{-- ES UN ENCABEZADO --}}
-                                @if (str_contains($componente->nombre, 'Ciclo') || str_contains($componente->nombre, 'Curso'))
+                                @if (str_contains($component->name, 'Ciclo') || str_contains($component->name, 'Curso'))
                                     <td colspan="6" class="text-uppercase bg-light small fw-bolder">
-                                        {{ $componente->nombre }}
+                                        {{ $component->name }}
                                     </td>
                                 @else
-                                    {{-- ES UN COMPONENTE --}}
-                                    <td class="small" data-title="Componente">{{ $componente->nombre }}</td>
+                                    {{-- ES UN COMPONENT --}}
+                                    <td class="small" data-title="Component">{{ $component->name }}</td>
 
                                     {{-- ES ACTIVIDAD ESTUDIANTIL --}}
-                                    @if (strlen($componente->p1) > 4)
-                                        <td colspan="5" class="small" data-title="N. Final">{{ $componente->p1 }}</td>
+                                    @if (strlen($component->partial_1) > 4)
+                                        <td colspan="5" class="small" data-title="N. Final">{{ $component->partial_1 }}</td>
                                     @else
-                                        {{-- ES COMPONENTE CON PARCIALES --}}
-                                        <td data-title="Parcial I">{{ $componente->p1 }}</td>
-                                        <td data-title="Parcial II">{{ $componente->p2 }}</td>
-                                        <td data-title="Parcial II">{{ $componente->p3 }}</td>
-                                        <td data-title="N. Final">{{ $componente->final }}</td>
-                                        <td data-title="Especial">{{ $componente->convocatoria }}</td>
+                                        {{-- ES COMPONENT CON PARCIALES --}}
+                                        <td data-title="Parcial I">{{ $component->partial_1 }}</td>
+                                        <td data-title="Parcial II">{{ $component->partial_2 }}</td>
+                                        <td data-title="Parcial II">{{ $component->partial_3 }}</td>
+                                        <td data-title="N. Final">{{ $component->final_grade }}</td>
+                                        <td data-title="Especial">{{ $component->second_call }}</td>
                                     @endif
                                 @endif
                             </tr>
@@ -67,7 +66,7 @@
                     </tbody>
                     <tfoot class="text-center">
                         <tr>
-                            <th colspan="6">{{ $alumno->indice }}</th>
+                            <th colspan="6">{{ $student->average }}</th>
                         </tr>
                     </tfoot>
                 </table>
