@@ -8,7 +8,7 @@ class Component
     public $partial_1;
     public $partial_2;
     public $partial_3;
-    public $final_grade;
+    public $total;
     public $second_call;
 
     public function __construct($cols)
@@ -17,19 +17,19 @@ class Component
         $this->partial_1    = $this->cleanValue($cols[1]);
         $this->partial_2    = $this->cleanValue($cols[2]);
         $this->partial_3    = $this->cleanValue($cols[3]);
-        $this->final_grade  = $this->cleanValue($cols[4]);
+        $this->total        = $this->cleanValue($cols[4]);
         $this->second_call  = $this->cleanValue($cols[5]);
 
         $course             = $this->cleanValue($cols[6]);
         $tutorship          = $this->cleanValue($cols[7]);
 
-        $this->final_grade = is_numeric($course)
+        $this->total = is_numeric($course)
             ? $course
-            : $this->final_grade;
+            : $this->total;
 
-        $this->final_grade = is_numeric($tutorship)
+        $this->total = is_numeric($tutorship)
             ? $tutorship
-            : $this->final_grade;
+            : $this->total;
     }
 
     public function cleanValue($name)

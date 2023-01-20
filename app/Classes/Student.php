@@ -4,25 +4,16 @@ namespace App\Classes;
 
 class Student
 {
-    public $year;
-    public $faculty;
-    public $career;
-    public $name;
-    public $id;
-    public $cycle_year;
-    public $average;
+    public string $name;
+    public string $id;
+    public string $average;
+    public string $grade;
 
-    public function __construct($dom)
+    public function __construct($data)
     {
-        $strongs            = $dom->getElementsByTagName('strong');
-        $this->year         = trim($strongs[4]->textContent);
-        $this->faculty      = trim($strongs[5]->textContent);
-        $this->career       = trim($strongs[6]->textContent);
-        $this->name         = trim($strongs[7]->textContent);
-        $this->id           = trim($strongs[8]->textContent);
-        $this->cycle_year   = trim($strongs[9]->textContent);
-
-        $center             = $dom->getElementsByTagName('center');
-        $this->average      = trim($center[0]->textContent);
+        $this->name         = trim($data->labels[7]->textContent);
+        $this->id           = trim($data->labels[8]->textContent);
+        $this->grade        = trim($data->labels[4]->textContent);
+        $this->average      = trim($data->average[0]->textContent);
     }
 }

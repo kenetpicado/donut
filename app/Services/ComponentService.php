@@ -6,23 +6,53 @@ use App\Classes\Component;
 
 class ComponentService
 {
-    public function all($dom)
+    public function __invoke($rows)
     {
-        $components = [];
-        $rows = $dom->getElementsByTagName('table')->item(3)->getElementsByTagName('tr');
+        $cycles = [];
 
-        foreach ($rows as $key => $row) {
-
-            /* Omitir encabezado de la tabla */
-            if ($key == 0)
+        for ($i = 0; $i < $rows->length; $i++) {
+            if ($i == 0) {
                 continue;
+            }
 
-            /* Obtener todas las columnas y agregar array*/
-            $cols = $row->getElementsByTagName('td');
-            array_push($components, new Component($cols));
+            $cols = $rows[$i]->getElementsByTagName('td');
+
+            if ($this->isHeader($cols[0]->textContent)) {
+                $components = [];
+
+                for ($j = $i + 1; $j < $rows->length; $j++) {
+                    $component = $rows[$j]->getElementsByTagName('td');
+
+                    if ($this->isHeader($component[0]->textContent)) {
+                        break;
+                    } else {
+                        array_push($components, new Component($component));
+                    }
+
+                    $i++;
+                }
+
+                array_push($cycles, [
+                    'name' => $cols[0]->textContent,
+                    'components' => $components,
+                ]);
+            }
         }
 
-        return $components;
+        return $cycles;
+    }
+
+    public function isHeader($value)
+    {
+        $headers = ['Ciclo', 'Curso'];
+
+        foreach ($headers as $header) {
+            if (str_contains($value, $header)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // public function getNota($grade)

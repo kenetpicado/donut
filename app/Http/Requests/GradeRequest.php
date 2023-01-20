@@ -26,7 +26,16 @@ class GradeRequest extends FormRequest
         return [
             'id' => 'required|min:9|max:10|alpha_dash',
             'password' => 'required|min:5|max:6|alpha_num',
-            'year' => 'required|date_format:Y'
+            'year' => 'required'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'id' => 'Carnet',
+            'password' => 'PIN',
+            'year' => 'Año'
         ];
     }
 }
