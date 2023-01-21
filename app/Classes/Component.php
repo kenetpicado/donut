@@ -10,6 +10,8 @@ class Component
     public $partial_3;
     public $total;
     public $second_call;
+    public $course;
+    public $tutorship;
 
     public function __construct($cols)
     {
@@ -19,17 +21,8 @@ class Component
         $this->partial_3    = $this->cleanValue($cols[3]);
         $this->total        = $this->cleanValue($cols[4]);
         $this->second_call  = $this->cleanValue($cols[5]);
-
-        $course             = $this->cleanValue($cols[6]);
-        $tutorship          = $this->cleanValue($cols[7]);
-
-        $this->total = is_numeric($course)
-            ? $course
-            : $this->total;
-
-        $this->total = is_numeric($tutorship)
-            ? $tutorship
-            : $this->total;
+        $this->course       = $this->cleanValue($cols[6]);
+        $this->tutorship    = $this->cleanValue($cols[7]);
     }
 
     public function cleanValue($name)
