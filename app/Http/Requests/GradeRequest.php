@@ -33,9 +33,9 @@ class GradeRequest extends FormRequest
     public function attributes()
     {
         return [
-            'id' => 'Carnet',
+            'id' => 'carnet',
             'password' => 'PIN',
-            'year' => 'Año'
+            'year' => 'año'
         ];
     }
 }

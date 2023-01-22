@@ -4,14 +4,14 @@ namespace App\Classes;
 
 class Component
 {
-    public $name;
-    public $partial_1;
-    public $partial_2;
-    public $partial_3;
-    public $total;
-    public $second_call;
-    public $course;
-    public $tutorship;
+    public string $name;
+    public string $partial_1;
+    public string $partial_2;
+    public string $partial_3;
+    public string $total;
+    public string $second_call;
+    public string $course;
+    public string $tutorship;
 
     public function __construct($cols)
     {

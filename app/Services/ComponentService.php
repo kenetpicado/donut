@@ -6,13 +6,14 @@ use App\Classes\Component;
 
 class ComponentService
 {
+    // Build components object grouped by cycles
     public function __invoke($rows)
     {
         $cycles = [];
 
         for ($i = 0; $i < $rows->length; $i++) {
             if ($i == 0) {
-                continue;
+                continue; // Skip the first row
             }
 
             $cols = $rows[$i]->getElementsByTagName('td');
@@ -42,6 +43,7 @@ class ComponentService
         return $cycles;
     }
 
+    // Check if the row is a header
     public function isHeader($value)
     {
         $headers = ['Ciclo', 'Curso'];

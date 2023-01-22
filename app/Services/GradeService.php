@@ -13,7 +13,7 @@ class GradeService
         $dom = (new ConnectionService)->connect($request);
 
         if (!$dom) {
-            return response()->json(['error' => 'Oops algo no salió bien.'], 401);
+            return response()->json(['error' => 'Bad credentials'], 401);
         }
 
         $data = (new PurgeDataService)($dom);
