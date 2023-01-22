@@ -56,10 +56,4 @@ class ComponentService
 
         return false;
     }
-
-    // public function getNota($grade)
-    // {
-    //     $new_grade = str_replace('&nbsp', '', ($grade ?? ''));
-    //     return preg_replace('/\xc2\xa0/', '', $new_grade) ?: '-';
-    // }
 }
