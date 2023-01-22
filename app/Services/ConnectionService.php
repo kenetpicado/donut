@@ -27,13 +27,13 @@ class ConnectionService
 
     public function connect($request)
     {
-        // $result = file_get_contents(
-        //     "https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php",
-        //     false,
-        //     $this->createContext($request)
-        // );
+        $result = file_get_contents(
+            "https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php",
+            false,
+            $this->createContext($request)
+        );
 
-        $result = file_get_contents('no/2016.html', false);
+        //$result = file_get_contents('no/2016.html', false);
 
         $dom = new DOMDocument();
         libxml_use_internal_errors(true);
