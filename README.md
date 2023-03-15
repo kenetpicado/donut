@@ -1,17 +1,7 @@
-# donut
+# donut: backend
 
-## Acerca de
+Permite recibir una petición y enviarla hacia los servidores de la UNAN-León para obtener la respuesta y construir un Json con la información necesaria para ser mostrados en la aplicación cliente.
 
-Herramienta dirigida a los estudiantes de la Universidad Nacional Autónoma de Nicaragua - León, su objetivo mejorar la experiencia de usuario al realizar la consulta de calificaciones proporcionando una interfaz simple, intuitiva, amigable y adaptable a cualquier dispositivo.
+Ya que no se cuenta con una API oficial, la he simulado empleando los principios de Web Scraping.
 
-Además, es posible realizar dicha consulta en un rango de años específicos determinados por el usuario y de ese modo proporcionar un resultado más conveniente, funcionalidad de la que carece el [sitio oficial.](https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php)
-
-Puedes visitarlo en el siguiente enlace [cb-develop.tk](http://cb-develop.tk/)
-
-## Vulnerabilidades de seguridad
-
-Si descubre una vulnerabilidad de seguridad, envíe un correo electrónico a Kenet Picado a [kenetpicado1@gmail.com](mailto:kenetpicado1@gmail.com). Todas las vulnerabilidades de seguridad se abordarán de inmediato.
-
-## License
-
-Open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+De esa forma es posible utilizar el mismo endpoint para una aplicación móvil o bien cualquier otra tecnología para frontend que permita hacer una petición y obtener la información.
