@@ -14,7 +14,7 @@ class TestController extends Controller
     {
     }
 
-    public function __invoke(TestRequest $request)
+    public function __invoke(TestRequest $request): \Illuminate\Http\JsonResponse
     {
         return $this->gradeService->index([
             'id' => '00-00000-0',

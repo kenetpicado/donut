@@ -18,4 +18,14 @@ trait FormatValueTrait
 
         return $value;
     }
+
+    public function cleanName($name)
+    {
+        return trim(str_replace('Nombre y Apellidos: ', '', $name));
+    }
+
+    public function cleanId($value)
+    {
+        return trim(str_replace('Numero de Carnet: ', '', $value));
+    }
 }
