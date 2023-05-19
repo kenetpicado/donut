@@ -2,56 +2,34 @@
 
 namespace App\Services;
 
-use App\Classes\Student;
-use App\Classes\University;
-use Illuminate\Http\Response;
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\UniversityResource;
 
 class GradeService
 {
-    public function __invoke($request)
+    public function __construct(
+        private ConnectionService $connectionService,
+        private DataService $dataService
+    )
     {
-        $dom = (new ConnectionService)->connect($request);
+    }
+
+    public function index(array $request, $year = null): \Illuminate\Http\JsonResponse
+    {
+        $dom = $this->connectionService->connect($request, $year);
 
         if (!$dom) {
-            return response()->json(['error' => 'Bad credentials'], 401);
+            return response()->json(['message' => 'Bad credentials'], 401);
         }
 
-        $data = (new PurgeDataService)($dom);
+        $data = $this->dataService->purge($dom);
         unset($dom);
 
         return response()
             ->json([
-                'student' => new Student($data),
-                'university' => new University($data->labels),
-                'cycles' => (new ComponentService)($data->rows)
+                'student' => StudentResource::make($data),
+                'university' => UniversityResource::make($data->labels),
+                'cycles' => $this->dataService->transformCyclesToArray($data->rows)
             ], 200);
     }
-
-    /* public function range()
-    {
-        $years = (new YearService)->getRange($request);
-        $components_by_year = [];
-
-        for ($i = 0; $i < sizeof($years); $i++) {
-
-            $request->merge(['year' => $years[$i]]);
-            $dom = (new ConnectionService)->connect($request);
-
-            if ($i == 0 && !$dom)
-                return redirect()->route('range')->with('error', 'Oops');
-
-            if (!$dom)
-                continue;
-
-
-            $year = [
-                'year' => $years[$i],
-                'data' => (new ComponentService)($dom)
-            ];
-
-            array_push($components_by_year, $year);
-        }
-        $student = new Student($dom);
-        return view('results.range', compact('student', 'components_by_year'));
-    } */
 }

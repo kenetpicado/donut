@@ -6,34 +6,37 @@ use DOMDocument;
 
 class ConnectionService
 {
-    public function createContext($request)
+    public function createContext(array $request)
     {
         $postdata = http_build_query([
             'name' => 'f1',
-            'carnet' => $request->id,
-            'pin' => $request->password,
-            'anyo_lec' => $request->year,
+            'carnet' => $request['id'],
+            'pin' => $request['password'],
+            'anyo_lec' => $request['year'],
             'npag' => '2',
         ]);
 
         $opts = ['http' => [
             'method' => 'POST',
             'header' => 'Content-type: application/x-www-form-urlencoded',
-            'content' => $postdata
+            'content' => $postdata,
+            //'timeout' => 5,
         ]];
 
         return stream_context_create($opts);
     }
 
-    public function connect($request)
+    public function connect(array $request, $year = null)
     {
-        $result = file_get_contents(
-            "https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php",
-            false,
-            $this->createContext($request)
-        );
-
-        //$result = file_get_contents('no/2016.html', false);
+        if ($year) {
+            $result = file_get_contents('no/' . $year . '.html', false);
+        } else {
+            $result = file_get_contents(
+                "https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php",
+                false,
+                $this->createContext($request)
+            );
+        }
 
         $dom = new DOMDocument();
         libxml_use_internal_errors(true);
