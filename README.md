@@ -7,6 +7,8 @@ La versatilidad de **donut** permite que el backend pueda ser utilizado en difer
 
 #### Ejemplo
 
+![Captura desde 2023-06-05 17-36-55](https://github.com/kenetpicado/donut/assets/83382624/d9ee0bff-1575-46f1-98a3-a6be03f2f4e4)
+
 
 ## 🚀 Instalación
 
