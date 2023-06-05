@@ -5,7 +5,7 @@ Este proyecto, se encarga de realizar el scraping de la página de [consulta de 
 
 La versatilidad de **donut** permite que el backend pueda ser utilizado en diferentes proyectos de frontend, como Vue.js o aplicaciones Android y asi mostrar las calificaciones de los estudiantes de una manera más conveniente y personalizada.
 
-#### Ejemplo
+#### Ejemplo de respuesta
 
 ![Captura desde 2023-06-05 17-36-55](https://github.com/kenetpicado/donut/assets/83382624/d9ee0bff-1575-46f1-98a3-a6be03f2f4e4)
 
@@ -29,8 +29,6 @@ De ser necesario establece los permisos para `storage/` y `bootstrap/`
 - Inicia la aplicación en modo de desarrollo: `php artisan serve`
 
 ## 🛠️ Construido con
-
-El proyecto ha sido construido utilizando las siguientes tecnologías y herramientas:
 
 - [Laravel 💜](https://laravel.com/): Framework de desarrollo web de PHP que proporciona una estructura sólida y elegante para la construcción de aplicaciones web.
 - [Composer 🎵](https://getcomposer.org/): Administrador de paquetes para PHP que se utiliza para administrar las dependencias del proyecto y facilitar la incorporación de bibliotecas de terceros.
