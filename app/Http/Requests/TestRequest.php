@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class TestRequest extends FormRequest
 {
     use FailedValidationTrait;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +27,7 @@ class TestRequest extends FormRequest
     public function rules()
     {
         return [
-            'year' => 'required|in:2016,2020,2021,2022'
+            'year' => 'required|in:2016,2020,2021,2022',
         ];
     }
 }

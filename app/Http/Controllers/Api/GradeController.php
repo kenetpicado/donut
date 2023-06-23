@@ -9,9 +9,8 @@ use App\Services\GradeService;
 class GradeController extends Controller
 {
     public function __construct(
-        private GradeService $gradeService
-    )
-    {
+        private readonly GradeService $gradeService
+    ) {
     }
 
     public function __invoke(GradeRequest $request)

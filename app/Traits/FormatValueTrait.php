@@ -6,7 +6,7 @@ trait FormatValueTrait
 {
     public function formatValue($name)
     {
-        $value = str_replace('&nbsp', null, trim($name, chr(0xC2) . chr(0xA0)));
+        $value = str_replace('&nbsp', null, trim($name, chr(0xC2).chr(0xA0)));
 
         if (is_numeric($value)) {
             return (float) $value;

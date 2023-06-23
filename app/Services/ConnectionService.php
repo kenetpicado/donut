@@ -29,10 +29,10 @@ class ConnectionService
     public function connect(array $request, $year = null)
     {
         if ($year) {
-            $result = file_get_contents('no/' . $year . '.html', false);
+            $result = file_get_contents('no/'.$year.'.html', false);
         } else {
             $result = file_get_contents(
-                "https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php",
+                'https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php',
                 false,
                 $this->createContext($request)
             );

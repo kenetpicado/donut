@@ -15,7 +15,7 @@ class ComponentResource extends JsonResource
 
         return [
             'name' => $name,
-            $this->mergeWhen(!str_contains($name, 'ACTIVIDAD ESTUDIANTIL'), [
+            $this->mergeWhen(! str_contains($name, 'ACTIVIDAD ESTUDIANTIL'), [
                 'partial_1' => $this->formatValue($this[1]?->textContent),
                 'partial_2' => $this->formatValue($this[2]?->textContent),
                 'partial_3' => $this->formatValue($this[3]?->textContent),

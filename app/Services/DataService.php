@@ -12,7 +12,7 @@ class DataService
         return (object) [
             'labels' => $dom->getElementsByTagName('strong'),
             'average' => $dom->getElementsByTagName('center'),
-            'rows' => $dom->getElementsByTagName('table')->item(3)->getElementsByTagName('tr')
+            'rows' => $dom->getElementsByTagName('table')->item(3)->getElementsByTagName('tr'),
         ];
     }
 

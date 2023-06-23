@@ -10,8 +10,7 @@ class TestController extends Controller
 {
     public function __construct(
         private GradeService $gradeService,
-    )
-    {
+    ) {
     }
 
     public function __invoke(TestRequest $request): \Illuminate\Http\JsonResponse

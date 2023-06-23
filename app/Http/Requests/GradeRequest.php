@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class GradeRequest extends FormRequest
 {
     use FailedValidationTrait;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,7 +29,7 @@ class GradeRequest extends FormRequest
         return [
             'id' => 'required|min:9|max:10|alpha_dash',
             'password' => 'required|min:5|max:6|alpha_num',
-            'year' => 'required'
+            'year' => 'required',
         ];
     }
 
@@ -37,7 +38,7 @@ class GradeRequest extends FormRequest
         return [
             'id' => 'carnet',
             'password' => 'PIN',
-            'year' => 'año'
+            'year' => 'año',
         ];
     }
 }
