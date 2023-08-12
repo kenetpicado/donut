@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\GradeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return ['Laravel' => app()->version()];
-});
+Route::redirect('/', 'grades');
+
+Route::resource('grades', GradeController::class);
