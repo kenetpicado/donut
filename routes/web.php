@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\GradeController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', 'grades');
-
-Route::resource('grades', GradeController::class);
+Route::get('/', HomeController::class)->name('home');

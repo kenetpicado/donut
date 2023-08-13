@@ -1,0 +1,33 @@
+@import url('//fonts.googleapis.com/css2?family=Nunito');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #F3F4F6;
+    }
+    *:focus {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+    }
+  }
+
+  @layer components {
+    .input-primary {
+      @apply outline-none border-2 focus:border-gray-400 transform focus:scale-105 border-solid transition duration-300 bg-slate-200 text-gray-800 w-full py-2 px-3 rounded-lg my-4 text-xs;
+    }
+    .select-primary {
+      @apply outline-none border-2 focus:border-gray-400 border-solid bg-slate-200 text-gray-800 w-full py-2 px-3 rounded-lg my-4 text-xs;
+    }
+    .btn-primary {
+      @apply transition select-none duration-300 transform active:scale-110 tracking-wide text-gray-100 py-2 w-28 rounded-xl my-4 text-xs bg-gray-800 active:bg-gray-700;
+    }
+    .btn-secondary {
+      @apply transition select-none bg-white duration-300 transform active:scale-110 py-2 w-28 rounded-xl my-4 text-xs text-gray-800;
+    }
+  }
