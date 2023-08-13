@@ -1,13 +1,14 @@
+
 # donut
-![Backend](https://img.shields.io/badge/Backend-blue)
+![Frontend](https://img.shields.io/badge/Frontend-blue)
 
-Este proyecto, se encarga de realizar el scraping de la página de [consulta de notas de la UNAN-Leon](https://portalestudiantes.unanleon.edu.ni/consulta_estudiantes.php). Utilizando las credenciales del estudiante, el backend realiza una solicitud al sitio oficial y extrae los datos relevantes de la respuesta recibida. Luego, se formatea y estructura esta información para generar un JSON que contiene los datos de manera organizada y fácilmente procesable.
+Interfaz diseñada para mejorar la experiencia de los estudiantes de la Universidad Nacional Autónoma de Nicaragua - León al consultar sus calificaciones. Con esta aplicación, los estudiantes pueden acceder de manera rápida y sencilla a sus notas académicas.
 
-La versatilidad de **donut** permite que el backend pueda ser utilizado en diferentes proyectos de frontend, como Vue.js o aplicaciones Android y asi mostrar las calificaciones de los estudiantes de una manera más conveniente y personalizada.
+Caracterizada por una interfaz intuitiva y amigable, **donut** ofrece una experiencia de usuario optimizada para dispositivos móviles, permitiendo a los estudiantes acceder a sus calificaciones en cualquier momento y lugar, desde la comodidad de sus teléfonos inteligentes.
 
-#### Ejemplo de respuesta
+**donut** se basa en tecnologías web modernas, lo que garantiza su accesibilidad y compatibilidad con diferentes dispositivos y navegadores. La seguridad de los datos es una prioridad, ningún dato es recopilado.
 
-![Captura desde 2023-06-05 17-36-55](https://github.com/kenetpicado/donut/assets/83382624/d9ee0bff-1575-46f1-98a3-a6be03f2f4e4)
+![cover-dontut](https://github.com/kenetpicado/donut-frontend/assets/83382624/f2ae1aa6-6c23-43a7-8daf-755cc693ec6e)
 
 
 ## 🚀 Instalación
@@ -16,24 +17,36 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 
 1. Clona este repositorio: `git clone https://github.com/kenetpicado/donut.git`
 2. Ve al directorio del proyecto: `cd donut`
-3. Ejecuta: `composer install`
-
-## ⚙️ Configuración
-- Crea el archivo `.env` con el contenido de `.env.example`
-- Ejecuta `php artisan key:generate`
-
-De ser necesario establece los permisos para `storage/` y `bootstrap/`
+3. Instala las dependencias: `composer install` y `npm install`
+4. Crea un archivo `.env` y copia el contenido del archivo `.env.example` en él.
+5. Ejecuta `php artisan key:generate`
 
 ## 📦 Uso
 
-- Inicia la aplicación en modo de desarrollo: `php artisan serve`
+- Inicia la aplicación en modo de desarrollo: `php artisan serve` y `npm run dev`
+- Compila y minifica los archivos para producción: `npm run build`
 
 ## 🛠️ Construido con
+- 🐘 [Laravel](https://laravel.com/): Un framework de PHP para crear aplicaciones web.
+<!-- Inertia -->
+- 🚀 [Inertia.js](https://inertiajs.com/): Un stack de middleware que permite a los desarrolladores de Laravel crear aplicaciones de una sola página sin renunciar a las ventajas de las aplicaciones tradicionales basadas en el servidor.
+- 💚 [Vue.js](https://vuejs.org/): Un framework de JavaScript para construir interfaces de usuario interactivas y reactivas.
+- 🎨 [Tailwind CSS](https://tailwindcss.com/): Un framework de CSS utilitario altamente personalizable para crear diseños rápidos y modernos.
+- ⚡️ [Vite](https://vitejs.dev/): Un bundler rápido y liviano para aplicaciones web modernas en JavaScript.
 
-- [Laravel 💜](https://laravel.com/): Framework de desarrollo web de PHP que proporciona una estructura sólida y elegante para la construcción de aplicaciones web.
-- [Composer 🎵](https://getcomposer.org/): Administrador de paquetes para PHP que se utiliza para administrar las dependencias del proyecto y facilitar la incorporación de bibliotecas de terceros.
+Estas tecnologías han sido fundamentales en el desarrollo de este proyecto y han proporcionado una base sólida para construir una aplicación web eficiente y con una excelente experiencia de usuario.
 
-Estas tecnologías han sido utilizadas en conjunto para desarrollar y dar vida al proyecto, aprovechando sus características y ventajas para lograr una aplicación web robusta, escalable y de alto rendimiento.
+## 👥 Autores
+- [Kenet Picado](https://github.com/kenetpicado)
+- [Jairo Paniagua](https://github.com/jey1322)
+
+## 📱 Disponible también para Android
+
+¡Buenas noticias! Nuestra aplicación también está disponible para dispositivos Android. Si deseas obtener más información sobre la versión de Android de la aplicación, puedes consultar nuestro repositorio oficial.
+
+🔗 [Repositorio de la Aplicación Android](https://github.com/jey1322/Donut_androidApp)
+
+¡Esperamos que disfrutes de la aplicación tanto en la web como en dispositivos Android!
 
 
 ## 🤝 Contribución
@@ -46,10 +59,12 @@ Estas tecnologías han sido utilizadas en conjunto para desarrollar y dar vida a
 4. Haz push a la rama: `git push origin feature/nueva-funcionalidad`
 5. Envía un Pull Request.
 
-## 👥 Autores
-- [Kenet Picado](https://github.com/kenetpicado)
-
 ## 📋 Licencia
 
 Este proyecto se encuentra bajo la [Licencia MIT](https://opensource.org/licenses/MIT).
+
+## ✨ Agradecimientos
+
+- [Aileen Castro:](https://www.instagram.com/hahaileen/) Por su incansable apoyo en la prueba y validación del proyecto, así como por sus comentarios y retroalimentación constructiva.
+- [Roberto Berrios:](https://github.com/Roberto-Berrios) Por su invaluable conocimiento técnico y sus sugerencias que han mejorado significativamente el proyecto.
 
