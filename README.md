@@ -1,6 +1,5 @@
 
 # donut
-![Frontend](https://img.shields.io/badge/Frontend-blue)
 
 Interfaz diseñada para mejorar la experiencia de los estudiantes de la Universidad Nacional Autónoma de Nicaragua - León al consultar sus calificaciones. Con esta aplicación, los estudiantes pueden acceder de manera rápida y sencilla a sus notas académicas.
 
@@ -30,8 +29,11 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 - 🐘 [Laravel](https://laravel.com/): Un framework de PHP para crear aplicaciones web.
 <!-- Inertia -->
 - 🚀 [Inertia.js](https://inertiajs.com/): Un stack de middleware que permite a los desarrolladores de Laravel crear aplicaciones de una sola página sin renunciar a las ventajas de las aplicaciones tradicionales basadas en el servidor.
+
 - 💚 [Vue.js](https://vuejs.org/): Un framework de JavaScript para construir interfaces de usuario interactivas y reactivas.
+
 - 🎨 [Tailwind CSS](https://tailwindcss.com/): Un framework de CSS utilitario altamente personalizable para crear diseños rápidos y modernos.
+
 - ⚡️ [Vite](https://vitejs.dev/): Un bundler rápido y liviano para aplicaciones web modernas en JavaScript.
 
 Estas tecnologías han sido fundamentales en el desarrollo de este proyecto y han proporcionado una base sólida para construir una aplicación web eficiente y con una excelente experiencia de usuario.
