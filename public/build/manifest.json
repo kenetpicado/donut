@@ -1,0 +1,32 @@
+{
+  "resources/js/Pages/Home.css": {
+    "file": "assets/Home-9dec30b0.css",
+    "src": "resources/js/Pages/Home.css"
+  },
+  "resources/js/Pages/Home.vue": {
+    "css": [
+      "assets/Home-9dec30b0.css"
+    ],
+    "file": "assets/Home-64fa026a.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Home.vue"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-4f6bd120.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-4f6bd120.css"
+    ],
+    "dynamicImports": [
+      "resources/js/Pages/Home.vue"
+    ],
+    "file": "assets/app-893a719d.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
