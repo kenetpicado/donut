@@ -93,7 +93,7 @@ class ConnectionService
 
         $image = $table3->filter('tr:nth-child(3) td div img')->attr('src');
         [$firstDate] = explode(' ', $firstDateTime, 2);
-        $dateKey = $table4->filter('tr td div')->text();
+        $dateKey = self::cleanDescription($table4->filter('tr td div')->html());
 
         $dateKey = str_replace($firstDate, Carbon::create($firstDate)->format('d/m/y'), $dateKey);
 
@@ -115,5 +115,11 @@ class ConnectionService
     private function cleanString($string)
     {
         return trim(str_replace("\xc2\xa0", " ", $string));
+    }
+
+    public function cleanDescription($string)
+    {
+        $description = self::cleanString(str_replace(" class=\"ntextbig\"", '', str_replace("\r\n", '', $string)));
+        return preg_replace('/\s+/', ' ', $description);
     }
 }
