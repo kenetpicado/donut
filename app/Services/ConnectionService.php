@@ -80,11 +80,12 @@ class ConnectionService
         $resultTable5 = $rowsTable5->each(function ($row) {
             $rawDate = $row->filter('td span.ntext')->text();
             $date = str_replace("\xc2\xa0", " ", $rawDate);
-            $title = $row->filter('td.ntextrow')->text();
+
+            $title = $this->cleanTitle($row->filter('td.ntextrow')->text(), $rawDate);
 
             return [
                 'date' => Carbon::create($date)->format('d/m/y g:i A'),
-                'title' => trim(str_replace($rawDate, '', $title)),
+                'title' => $title,
             ];
         });
 
@@ -98,5 +99,15 @@ class ConnectionService
         ];
 
         return response()->json($result, 200);
+    }
+
+    private function cleanTitle($string, $date)
+    {
+        return self::cleanString(str_replace($date, '', $string));
+    }
+
+    private function cleanString($string)
+    {
+        return trim(str_replace("\xc2\xa0", " ", $string));
     }
 }
