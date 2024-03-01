@@ -56,6 +56,7 @@ class ConnectionService
     public function connectToEverestCargotrack(array $request)
     {
         $client = new Client();
+        $firstDateTime = '';
 
         $response = $client->post($this->EVEREST_URL . "/m/track.asp", [
             RequestOptions::FORM_PARAMS => $request,
@@ -77,24 +78,29 @@ class ConnectionService
 
         $rowsTable5 = $table6->filter('tr');
 
-        $resultTable5 = $rowsTable5->each(function ($row) {
+        $resultTable5 = $rowsTable5->each(function ($row) use (&$firstDateTime) {
             $rawDate = $row->filter('td span.ntext')->text();
-            $date = str_replace("\xc2\xa0", " ", $rawDate);
-
+            $dateTime = str_replace("\xc2\xa0", " ", $rawDate);
             $title = $this->cleanTitle($row->filter('td.ntextrow')->text(), $rawDate);
 
+            $firstDateTime = $dateTime;
+
             return [
-                'date' => Carbon::create($date)->format('d/m/y g:i A'),
+                'date' => Carbon::create($dateTime)->format('d/m/y g:i A'),
                 'title' => $title,
             ];
         });
 
         $image = $table3->filter('tr:nth-child(3) td div img')->attr('src');
+        [$firstDate] = explode(' ', $firstDateTime, 2);
+        $dateKey = $table4->filter('tr td div')->text();
+
+        $dateKey = str_replace($firstDate, Carbon::create($firstDate)->format('d/m/y'), $dateKey);
 
         $result = [
             'status' => $status,
             'image' => $this->EVEREST_URL . str_replace("..", "", $image),
-            'date' => $table4->filter('tr td div')->text(),
+            'date' => $dateKey,
             'history' => $resultTable5,
         ];
 
