@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use DOMDocument;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
@@ -77,19 +78,19 @@ class ConnectionService
         $rowsTable5 = $table6->filter('tr');
 
         $resultTable5 = $rowsTable5->each(function ($row) {
-            $date = $row->filter('td span.ntext')->text();
+            $rawDate = $row->filter('td span.ntext')->text();
+            $date = str_replace("\xc2\xa0", " ", $rawDate);
             $title = $row->filter('td.ntextrow')->text();
 
             return [
-                'date' => $date,
-                'title' => trim(str_replace($date, '', $title)),
+                'date' => Carbon::create($date)->format('d/m/y g:i A'),
+                'title' => trim(str_replace($rawDate, '', $title)),
             ];
         });
 
         $image = $table3->filter('tr:nth-child(3) td div img')->attr('src');
 
         $result = [
-            'title' => $table3->filter('tr:first-child td div strong')->text(),
             'status' => $status,
             'image' => $this->EVEREST_URL . str_replace("..", "", $image),
             'date' => $table4->filter('tr td div')->text(),
