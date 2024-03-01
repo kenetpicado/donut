@@ -93,14 +93,29 @@ class ConnectionService
 
         $image = $table3->filter('tr:nth-child(3) td div img')->attr('src');
         [$firstDate] = explode(' ', $firstDateTime, 2);
-        $dateKey = self::cleanDescription($table4->filter('tr td div')->html());
+        $dateKey = self::cleanString($table4->filter('tr td div')->text());
 
         $dateKey = str_replace($firstDate, Carbon::create($firstDate)->format('d/m/y'), $dateKey);
+
+        if (str_contains($dateKey, 'AM')) {
+            [$dateKey, $description] = array_map('trim', explode('AM', $dateKey));
+            $dateKey .= ' AM';
+            [$track, $guide, $info] = explode(' ', $description, 3);
+        }
+
+        if (str_contains($dateKey, 'PM')) {
+            [$dateKey, $description] = array_map('trim', explode('PM', $dateKey));
+            $dateKey .= ' PM';
+            [$track, $guide, $info] = explode(' ', $description, 3);
+        }
 
         $result = [
             'status' => $status,
             'image' => $this->EVEREST_URL . str_replace("..", "", $image),
             'date' => $dateKey,
+            'track' => $track ?? '',
+            'guide' => $guide ?? '',
+            'info' => $info ?? '',
             'history' => $resultTable5,
         ];
 
