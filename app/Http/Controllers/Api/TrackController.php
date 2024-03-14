@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TrackRequest;
+use App\Http\Resources\TrackResource;
 use App\Services\TrackService;
 
 class TrackController extends Controller
@@ -17,6 +18,6 @@ class TrackController extends Controller
 
     public function __invoke(TrackRequest $request)
     {
-        return $this->trackService->getPackageInformation($request->validated());
+        return TrackResource::make($this->trackService->getPackageInformation($request->validated()))->resolve();
     }
 }
