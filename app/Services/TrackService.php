@@ -25,7 +25,6 @@ class TrackService
 
     private function parseEverestData($htmlContent)
     {
-        $firstDateTime = '';
         $explodedInformation = [];
         $crawler = new Crawler($htmlContent);
 
@@ -41,25 +40,22 @@ class TrackService
 
         $rowsTable5 = $table6->filter('tr');
 
-        $history = $rowsTable5->each(function ($row) use (&$firstDateTime) {
+        $history = $rowsTable5->each(function ($row) {
             $rawDate = $row->filter('td span.ntext')->text();
-            $cleanDateTime = self::cleanString($rawDate);
-
-            $firstDateTime = $cleanDateTime;
 
             return [
-                'date' => Carbon::create($cleanDateTime)->format('d/m/y g:i A'),
+                'date' => Carbon::create(self::cleanString($rawDate))->format('d/m/y g:i A'),
                 'title' => $this->replaceAndClean($row->filter('td.ntextrow')->text(), $rawDate),
             ];
         });
 
         $image = $table3->filter('tr:nth-child(3) td div img')->attr('src');
 
-        [$firstDate] = explode(' ', $firstDateTime, 2);
-
         $description = self::cleanString($table4->filter('tr td div')->text());
 
-        $description = str_replace($firstDate, Carbon::create($firstDate)->format('d/m/y'), $description);
+        $description = preg_replace_callback("/(\d{1,2}\/\d{1,2}\/\d{4})/", function ($matches) {
+            return Carbon::parse($matches[0])->format('d/m/y');
+        }, $description);
 
         if (str_contains($description, 'AM')) {
             $explodedInformation = $this->explodeInformation($description, "AM");
@@ -83,7 +79,7 @@ class TrackService
     private function explodeInformation($description, $type)
     {
         [$date, $description] = array_map('trim', explode($type, $description));
-        $descriptionParts = explode(' ', $description);
+        $descriptionParts = explode(' ', $description, 3);
 
         return [
             'date' => $date . " $type",
