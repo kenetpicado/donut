@@ -32,7 +32,7 @@ class TrackService
         $status = $table3->filter('tr:nth-child(2) td div strong')->text();
 
         if ($status == 'NO SE HA ENCONTRADO') {
-            return abort(404, 'No se ha encontrado el paquete');
+            return abort(404, 'Aún no hemos recibido este paquete.');
         }
 
         $table4 = $crawler->filter('table')->eq(3);
@@ -72,7 +72,7 @@ class TrackService
             'track' => $explodedInformation['track'] ?? '',
             'guide' => $explodedInformation['guide'] ?? '',
             'info' => $explodedInformation['info'] ?? '',
-            'history' => $history,
+            'history' => array_reverse($history),
         ];
     }
 
